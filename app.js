@@ -3,9 +3,12 @@ let numeroLimite = 10;
 let numeroSecreto = gerarNumeroAleatorio();
 let tentativas = 1;
 
+
+
 function exibirTextoTela(tag, texto) {
     let campo = document.querySelector(tag);
     campo.innerHTML = texto;
+    
     if ('speechSynthesis' in window) {
         let utterance = new SpeechSynthesisUtterance(texto);
         utterance.lang = 'pt-BR'; 
@@ -15,11 +18,26 @@ function exibirTextoTela(tag, texto) {
         console.log("Web Speech API não suportada neste navegador.");
     }
 
+   
 }
 
 function exibirMensagemInicial(){
+    document.addEventListener('DOMContentLoaded', () => {
+     ///Outras narrações que você queira adicionar ao carregar o jogo
+      });
+    exibirTextoTela('h1', 'Bem vindo ao jogo');
     exibirTextoTela('h1', 'Advinhe o número secreto');
     exibirTextoTela('p', 'Escolha um número entre 1 e 10');
+}
+
+const titulo1 = document.getElementById('titulo1');
+const titulo2 = document.getElementById('titulo2');
+
+function mudarTitulo() {
+  titulo1.classList.add('hidden');
+  setTimeout(() => {
+    titulo2.classList.remove('hidden');
+  }, 500); // Tempo de transição do CSS
 }
 
 exibirMensagemInicial();
